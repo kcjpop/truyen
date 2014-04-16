@@ -1,0 +1,21 @@
+{
+  "name": "truyen",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "server.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "truyen"
+  ],
+  "author": "An Cao",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.0.0"
+  },
+  "devDependencies": {
+    
+  }
+}
