@@ -12,8 +12,18 @@ app.set 'partials',
     js    : 'partials/js'
     footer: 'partials/footer'
 app.engine 'html', require 'hogan-express'
-
 app.use express.static __dirname+'/public'
+
+# Set categories
+app.locals.categories = [
+    {name: 'Kiếm Hiệp'}
+    {name: 'Tiên Hiệp'}
+    {name: 'Sắc Hiệp'}
+    {name: 'Huyền Huyễn'}
+    {name: 'Đô Thị'}
+    {name: 'Dị Giới'}
+    {name: 'Ngôn Tình'}
+]
 
 # Set up routes
 app.use '/api/v1/stories', require './app/routes/stories'
@@ -24,6 +34,7 @@ app.use '/api/v1/chapters', require './app/routes/chapters'
 app.get '/', (req, res, next) ->
     res.locals =
         title: 'Welcome to azTruyen'
+
     res.render 'index'
 
 app.listen port
