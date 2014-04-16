@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.0.0",
-    "mongoose": "^3.8.8"
+    "mongoose": "^3.8.8",
+    "hogan-express": "^0.5.2"
   },
   "devDependencies": {}
 }
