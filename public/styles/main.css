@@ -1,0 +1,65 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,700|Roboto+Slab:400,300,700|Noticia+Text:400,700&subset=latin,vietnamese);
+@import url(../bower_components/semantic-ui/build/packaged/css/semantic.min.css);
+body {
+    font-family: 'Open Sans', serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+  margin-top: 70px !important;
+}
+
+.ui.sidebar.chapters {
+  margin-top: 43px !important;
+}
+
+.ui.navbar.menu .item {
+  font-weight: 300;
+}
+
+.find.input input {
+  font-family: 'Open Sans', serif;
+  font-weight: 300;
+}
+
+/* links */
+a {
+  color: #009FDA;
+  text-decoration: none;
+}
+a:hover {
+  color: #00BAFF;
+}
+
+footer p {
+    font-size: 0.75em;
+    color: #999;
+}
+
+.chapter p {
+    font-family: 'Noticia Text', sans-serif;
+    font-size: 1.4em;
+}
+
+.ui.facebook.shy.button {
+  margin-left: 5px;
+}
+
+@media (max-width: 767px) {
+  .ui.active.navbar.top.sidebar {
+    height: 100% !important;
+    margin-top: 43px !important;
+  }
+
+  .chapter p {
+      font-size: 1em;
+  }
+
+  .ui.grid>.narrow.row {
+    margin-top: 0;
+    padding: 0;
+  }
+}

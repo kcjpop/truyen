@@ -1,0 +1,10 @@
+{
+  "name": "truyen",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.10.2",
+    "semantic-ui": "~0.15.4",
+    "angular": "~1.2.16"
+  },
+  "devDependencies": {}
+}
