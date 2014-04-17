@@ -15,6 +15,7 @@ gulp.task 'test', ->
 gulp.task 'watch', ->
   watcher = gulp.watch './app/**/*.coffee'
   watcher.on 'change', (e) ->
+    console.log e.path+' was changed.'
     gulp.src e.path
     .pipe coffeelint()
     .pipe coffeelint.reporter()

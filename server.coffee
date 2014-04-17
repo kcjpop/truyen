@@ -26,17 +26,13 @@ app.locals.categories = [
 ]
 
 # Set up routes
-app.use '/api/v1/stories', require './app/routes/stories'
-app.use '/api/v1/chapters', require './app/routes/chapters'
+app.use '/api/v1/stories', require './app/routes/api/stories'
+app.use '/api/v1/chapters', require './app/routes/api/chapters'
 app.use '/api/v1/stories/:storyId/chapters',
-  require './app/routes/stories.chapters'
+  require './app/routes/api/stories.chapters'
 
 # Homepage
-app.get '/', (req, res, next) ->
-  res.locals =
-    title: 'Welcome to azTruyen'
-
-  res.render 'index'
+require('./app/routes/app')(app)
 
 app.listen port
 console.log 'Server is now running at port '+port
