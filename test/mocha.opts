@@ -1,0 +1,5 @@
+--compilers coffee:coffee-script/register
+--colors
+--recursive
+--ui bdd
+--reporter list
