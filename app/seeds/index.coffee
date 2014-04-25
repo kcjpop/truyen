@@ -16,4 +16,7 @@ db.on 'connected', ->
 
   chapters.forEach (item) ->
     obj = new Chapter item
+    item.content.replace /<span(.*)<\/span>/gi, ''
     obj.save()
+
+  console.log 'Done'
