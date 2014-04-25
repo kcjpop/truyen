@@ -1,4 +1,5 @@
 --compilers coffee:coffee-script/register
+--require ./test/bootstrap.coffee
 --colors
 --recursive
 --ui bdd

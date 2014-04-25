@@ -1,6 +1,3 @@
-chai = require 'chai'
-chai.should()
-
 describe 'Test', ->
   it 'should make addition correctly', (done) ->
     a = 1+1
