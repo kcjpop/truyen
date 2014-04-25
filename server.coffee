@@ -2,6 +2,14 @@ express = require 'express'
 app     = express()
 port    = process.env.PORT || 3333
 
+# Config
+konfig = require 'konfig'
+global.config = konfig path: './app/config'
+
+# Connect to database
+mongoose = require 'mongoose'
+mongoose.connect global.config.database.url
+
 # Some settings
 app.set 'view engine', 'html'            # To use .html extention for templates
 app.set 'views', __dirname+'/app/views'  # Set `views` folder
