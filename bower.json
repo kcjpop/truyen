@@ -4,7 +4,9 @@
   "dependencies": {
     "jquery": "~1.10.2",
     "semantic-ui": "~0.15.4",
-    "angular": "~1.2.16"
+    "backbone": "~1.1.2",
+    "underscore": "~1.6.0",
+    "requirejs": "~2.1.11"
   },
   "devDependencies": {}
 }
