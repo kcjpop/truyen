@@ -44,3 +44,5 @@ require('./app/routes/app')(app)
 
 app.listen port
 console.log 'Server is now running at port '+port
+
+module.exports = app
