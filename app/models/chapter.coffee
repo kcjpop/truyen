@@ -1,9 +1,10 @@
 m = require 'mongoose'
 
 schema = m.Schema
+  sid     : m.Schema.Types.ObjectId # Story ID
   number  : Number
   name    : String
-  sid     : m.Schema.Types.ObjectId # Story ID
+  slug    : String
   content : String
   added   :
     type: Date
