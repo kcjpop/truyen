@@ -3,7 +3,7 @@ m = require 'mongoose'
 schema = m.Schema
   number  : Number
   name    : String
-  storyId : m.Schema.Types.ObjectId
+  sid     : m.Schema.Types.ObjectId # Story ID
   content : String
   added   :
     type: Date
