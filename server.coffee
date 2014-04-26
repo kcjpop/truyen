@@ -22,16 +22,11 @@ app.set 'partials',
 app.engine 'html', require 'hogan-express'
 app.use express.static __dirname+'/public'
 
-# Set categories
-app.locals.categories = [
-  {name: 'Kiếm Hiệp'}
-  {name: 'Tiên Hiệp'}
-  {name: 'Sắc Hiệp'}
-  {name: 'Huyền Huyễn'}
-  {name: 'Đô Thị'}
-  {name: 'Dị Giới'}
-  {name: 'Ngôn Tình'}
-]
+# Get all genres of stories
+Story = require './app/models/story'
+Story.genres()
+.then (genres) ->
+  app.locals.storyGenres = genres
 
 # Set up routes
 app.use '/api/v1/stories', require './app/routes/api/stories'
