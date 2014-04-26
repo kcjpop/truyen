@@ -2,8 +2,8 @@
 require '!style!css!../styles/main.css'
 
 # JavaScript
-$ = require 'jquery/jquery'
-require 'semantic-ui/build/packaged/javascript/semantic'
+$ = require 'jquery'
+require 'semantic-ui'
 
 $ ->
   $('.popup').popup()
