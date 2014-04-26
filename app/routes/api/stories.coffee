@@ -18,15 +18,20 @@ routes.get '/', (req, res, next) ->
   skip  = if req.query.skip?  then req.query.skip  else 0
 
   # Return all stories in database
-  promise = Story.find()
+  query = Story.find()
   .sort sort
   .select filters
   .limit limit
   .skip skip
-  .exec()
 
-  # Pagination support
-  promise.then (stories) ->
+  # @todo: Think about a generic way to allow filters like this
+  if req.query.genre? and req.query.genre.length > 0
+    query.where 'genres'
+    .in [req.query.genre.trim()]
+
+  query
+  .exec()
+  .then (stories) ->
     res.json stories
 
 ##
