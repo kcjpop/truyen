@@ -7,8 +7,7 @@
     "author": "Tâm Tại Lưu Lãng",
     "aliases": ["Lão Bà Của Ta Là Hoa Hậu Giảng Đường"],
     "genres": ["Sắc Hiệp", "Đô Thị", "Dị Năng"],
-    "status": "Chưa Hoàn Thành",
-    "views": 123
+    "status": "Chưa Hoàn Thành"
   },
   {
     "_id": "535a3da359ce6f75f27d760b",
@@ -18,7 +17,6 @@
     "author": "Duy Nhất Thiên Tử",
     "aliases": [],
     "genres": ["Tiên Hiệp", "Dị Giới", "Huyền Huyễn"],
-    "status": "Hoàn Thành",
-    "views": 456
+    "status": "Hoàn Thành"
   }
 ]
