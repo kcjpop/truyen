@@ -6,6 +6,9 @@ schema = m.Schema
   name    : String
   slug    : String
   content : String
+  views   : # Number of view
+    type: Number
+    default: 0
   added   :
     type: Date
     default: Date.now
