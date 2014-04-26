@@ -1,7 +1,7 @@
 module.exports = {
-  entry: './client/scripts/app.coffee',
+  entry: __dirname + '/client/scripts/app.coffee',
   output: {
-    path: './public',
+    path: __dirname + '/public',
     filename: 'bundle.js'
   },
   module: {
@@ -12,6 +12,6 @@ module.exports = {
     ]
   },
   resolve: {
-    modulesDirectories: ['../bower_components', 'node_modules']
+    modulesDirectories: [__dirname + '/client/bower_components', 'node_modules']
   }
 };
