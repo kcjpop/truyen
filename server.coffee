@@ -22,12 +22,6 @@ app.set 'partials',
 app.engine 'html', require 'hogan-express'
 app.use express.static __dirname+'/public'
 
-# Get all genres of stories
-Story = require './app/models/story'
-Story.genres()
-.then (genres) ->
-  app.locals.storyGenres = genres
-
 # Set up routes
 app.use '/api/v1/stories', require './app/routes/api/stories'
 app.use '/api/v1/chapters', require './app/routes/api/chapters'

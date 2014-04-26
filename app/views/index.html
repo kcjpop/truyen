@@ -89,62 +89,16 @@
           <h3 class="ui red header">Hot nhất trong tuần</h3>
 
           <div class="ui segment">
+            {{# topStories}}
             <div class="ui two column grid">
               <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
+                <a href="/truyen/{{ slug }}">{{ name }}</a>
               </div>
               <div class="right aligned column">
-                <div class="ui green label"><div class="detail">1062</div> Lượt xem</div>
+                <div class="ui green label"><div class="detail">{{ views }}</div> Lượt xem</div>
               </div>
             </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><div class="detail">1062</div> Lượt xem</div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><div class="detail">1062</div> Lượt xem</div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><div class="detail">1062</div> Lượt xem</div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><div class="detail">1062</div> Lượt xem</div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><div class="detail">1062</div> Lượt xem</div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><div class="detail">1062</div> Lượt xem</div>
-              </div>
-            </div>
+            {{/ topStories}}
 
           </div>
         </div>
