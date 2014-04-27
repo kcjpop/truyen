@@ -1,3 +1,4 @@
+Q       = require 'q'
 Story   = require '../models/story'
 Counter = require '../models/counter'
 moment  = require 'moment'
@@ -18,21 +19,21 @@ module.exports = (app) ->
     .then (story) ->
       return res.status 404 if story is null
       app.locals.story = story
-
-    res.render 'story'
+      res.render 'story'
 
   ##
   # Homepage
   ##
   app.get '/', (req, res, next) ->
+    promises = []
     # Get top-viewed in the current week
-    Counter.topViewedStories moment()
-    .then (stories) ->
-      app.locals.topStories = stories
-
+    promises.push Counter.topViewedStories moment()
     # Get latest stories
-    Story.latest()
-    .then (stories) ->
-      app.locals.latestStories = stories
+    promises.push Story.latest()
 
-    res.render 'index'
+    Q.all promises
+    .then (results) ->
+      app.locals.topStories    = results[0]
+      app.locals.latestStories = results[1]
+
+      res.render 'index'
