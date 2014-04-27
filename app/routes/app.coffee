@@ -11,7 +11,7 @@ module.exports = (app) ->
   .then (genres) ->
     app.locals.storyGenres = genres
 
-  app.get '/truyen/:slug/', (req, res, next) ->
+  app.get '/truyen/:slug', (req, res, next) ->
     Story.findOne()
     .where('slug').equals req.params.slug
     .exec()
