@@ -67,4 +67,21 @@ schema.statics.latest = (opt) ->
 
   return deferred.promise
 
+##
+# Get chapters of a stories
+#
+# @param Integer skip The number of chapter to skip
+##
+schema.methods.getChapters = (opt) ->
+  query = @model('Chapter').find()
+
+  if opt?
+    query.limit if opt.limit? then opt.limit else 50
+    query.skip  if opt.skip?  then opt.skip  else 0
+
+  return query
+  .where('sid').equals @_id
+  .sort 'number'
+  .exec()
+
 module.exports = m.model 'Story', schema

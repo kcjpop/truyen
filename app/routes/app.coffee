@@ -18,8 +18,13 @@ module.exports = (app) ->
     .exec()
     .then (story) ->
       return res.status 404 if story is null
-      app.locals.story = story
-      res.render 'story'
+
+      # Get chapters of this story
+      story.getChapters()
+      .then (chapters) ->
+        story.chapters = chapters
+        app.locals.story = story
+        res.render 'story'
 
   ##
   # Homepage
