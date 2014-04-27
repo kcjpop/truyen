@@ -25,63 +25,16 @@
           <h3 class="ui red header">Mới cập nhật</h3>
 
           <div class="ui segment">
+            {{# latestStories}}
             <div class="ui two column grid">
               <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
+                <a href="/truyen/{{slug}}" title="Click để xem truyện này">{{name}}</a>
               </div>
               <div class="right aligned column">
-                <div class="ui green label"><a href="chapter.html">Chương<div class="detail">1062</div></a></div>
+                <div class="ui green label"><a href="/truyen/{{slug}}/chuong-{{latestChapter.number}}-{{latestChapter.slug}}" title="Click để đọc chương này">Chương<div class="detail">{{latestChapter.number}}</div></a></div>
               </div>
             </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><a href="chapter.html">Chương<div class="detail">1062</div></a></div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><a href="chapter.html">Chương<div class="detail">1062</div></a></div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><a href="chapter.html">Chương<div class="detail">1062</div></a></div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><a href="chapter.html">Chương<div class="detail">1062</div></a></div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><a href="chapter.html">Chương<div class="detail">1062</div></a></div>
-              </div>
-            </div>
-            <div class="ui two column grid">
-              <div class="column">
-                <a href="story.html">Quốc Sắc Sinh Kiêu</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><a href="chapter.html">Chương<div class="detail">1062</div></a></div>
-              </div>
-            </div>
-
+            {{/ latestStories}}
           </div>
         </div>
 
