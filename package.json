@@ -18,7 +18,8 @@
     "hogan-express": "^0.5.2",
     "konfig": "^0.1.1",
     "underscore": "^1.6.0",
-    "moment": "^2.6.0"
+    "moment": "^2.6.0",
+    "q": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^1.9.1",
