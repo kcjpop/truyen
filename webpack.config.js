@@ -1,7 +1,8 @@
 module.exports = {
   entry: __dirname + '/client/scripts/app.coffee',
   output: {
-    path: __dirname + '/public',
+    path: __dirname + '/public/assets',
+    publicPath: '/assets/',
     filename: 'bundle.js'
   },
   module: {
