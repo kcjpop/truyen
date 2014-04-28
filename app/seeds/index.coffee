@@ -1,10 +1,11 @@
+Q = require 'q'
 # Config
 konfig = require 'konfig'
 global.config = konfig path: './app/config'
 
 # Connect to database
 mongoose = require 'mongoose'
-mongoose.createConnection global.config.database.url
+mongoose.connect global.config.database.url
 db = mongoose.connection
 
 Story   = require '../models/story'
@@ -15,8 +16,9 @@ stories = require './stories.json'
 chapters = require './chapters.json'
 counters = require './counters.json'
 
+promises = []
 db.on 'connected', ->
-  # Should I empty all collections first?
+
   stories.forEach (item) ->
     obj = new Story item
     obj.save()
