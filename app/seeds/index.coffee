@@ -1,5 +1,10 @@
+# Config
+konfig = require 'konfig'
+global.config = konfig path: './app/config'
+
+# Connect to database
 mongoose = require 'mongoose'
-mongoose.connect 'mongodb://127.0.0.1/truyen'
+mongoose.createConnection global.config.database.url
 db = mongoose.connection
 
 Story   = require '../models/story'
