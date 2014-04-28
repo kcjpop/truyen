@@ -4,6 +4,23 @@ routes = express.Router()
 Story = require '../../models/story'
 
 ##
+# Get story by slug
+##
+routes.param 'slug', (req, res, next, slug) ->
+  Story.findOne slug: slug
+  .select '-__v'
+  .exec()
+  .then (story) ->
+    unless story?
+      res.status 404
+      .json message: 'Cannot find story with this ID'
+    else
+      req.story = story
+    next()
+  , (err) ->
+    next err
+
+##
 # Get all stories
 ##
 routes.get '/', (req, res, next) ->
@@ -38,18 +55,11 @@ routes.get '/', (req, res, next) ->
 # Get a single story
 ##
 routes.get '/:slug', (req, res, next) ->
-  promise = Story.findOne
-    slug: req.params.slug
-  .select '-_id -__v'
-  .exec()
+  res.json req.story
 
-  promise.then (story) ->
-    # If cannot find this story
-    if story == null
-      res.status 404
-      .json
-        message: 'Cannot find story with this ID'
-    else
-      res.json story
+##
+# Define chapters as sub-resource
+##
+routes.use '/:slug/chapters', require './stories.chapters'
 
 module.exports = routes

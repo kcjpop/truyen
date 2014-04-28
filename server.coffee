@@ -25,8 +25,6 @@ app.use express.static __dirname+'/public'
 # Set up routes
 app.use '/api/v1/stories', require './app/routes/api/stories'
 app.use '/api/v1/chapters', require './app/routes/api/chapters'
-app.use '/api/v1/stories/:storyId/chapters',
-  require './app/routes/api/stories.chapters'
 
 # Homepage
 require('./app/routes/app')(app)
