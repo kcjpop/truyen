@@ -8,4 +8,4 @@ require('chai').should()
 global.request = require 'supertest'
 
 # Database seeding
-require '../app/seeds'
+# require '../app/seeds'
