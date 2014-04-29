@@ -26,8 +26,11 @@ app.use express.static __dirname+'/public'
 app.use '/api/v1/stories', require './app/routes/api/stories'
 app.use '/api/v1/chapters', require './app/routes/api/chapters'
 
+# GLOBALS
+app.locals.title = 'azTruyen, truyện gì cũng có, update nhanh nhất'
+
 # Homepage
-require('./app/routes/app')(app)
+app.use '/', require './app/routes/app'
 
 app.listen port
 console.log 'Server is now running at port '+port

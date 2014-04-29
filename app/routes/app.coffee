@@ -1,44 +1,55 @@
+express = require 'express'
+routes  = express.Router()
 Q       = require 'q'
 Story   = require '../models/story'
 Counter = require '../models/counter'
 moment  = require 'moment'
 
-module.exports = (app) ->
-  # GLOBALS
-  app.locals.title = 'azTruyen, truyện gì cũng có, update nhanh nhất'
-
-  # Get all genres of stories
+# Get all genres of stories
+routes.use (req, res, next) ->
   Story.genres()
   .then (genres) ->
-    app.locals.storyGenres = genres
+    res.locals.storyGenres = genres
+    next()
 
-  app.get '/truyen/:slug', (req, res, next) ->
-    Story.findOne()
-    .where('slug').equals req.params.slug
+routes.param 'slug', (req, res, next, slug) ->
+  Story.findOne slug: slug
+    .select '-__v'
     .exec()
     .then (story) ->
-      return res.status 404 if story is null
+      unless story?
+        res.status 404
+        .send 'Cannot find story with this ID'
+      else
+        req.story = story
+      next()
+    , (err) ->
+      next err
 
-      # Get chapters of this story
-      story.getChapters()
-      .then (chapters) ->
-        story.chapters = chapters
-        app.locals.story = story
-        res.render 'story'
+routes.get '/truyen/:slug', (req, res, next) ->
+  story = req.story
+  # Get chapters of this story
+  story.getChapters()
+  .then (chapters) ->
+    story.chapters = chapters
+    res.locals.story = story
+    res.render 'story'
 
-  ##
-  # Homepage
-  ##
-  app.get '/', (req, res, next) ->
-    promises = []
-    # Get top-viewed in the current week
-    promises.push Counter.topViewedStories moment()
-    # Get latest stories
-    promises.push Story.latest()
+##
+# Homepage
+##
+routes.get '/', (req, res, next) ->
+  promises = []
+  # Get top-viewed in the current week
+  promises.push Counter.topViewedStories moment()
+  # Get latest stories
+  promises.push Story.latest()
 
-    Q.all promises
-    .then (results) ->
-      app.locals.topStories    = results[0]
-      app.locals.latestStories = results[1]
+  Q.all promises
+  .then (results) ->
+    res.locals.topStories    = results[0]
+    res.locals.latestStories = results[1]
 
-      res.render 'index'
+    res.render 'index'
+
+module.exports = routes
