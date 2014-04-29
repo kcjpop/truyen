@@ -1,9 +1,12 @@
 express = require 'express'
 routes  = express.Router()
 Q       = require 'q'
-Story   = require '../models/story'
-Counter = require '../models/counter'
 moment  = require 'moment'
+
+# Load models
+Story   = require '../models/story'
+Chapter = require '../models/chapter'
+Counter = require '../models/counter'
 
 # Get all genres of stories
 routes.use (req, res, next) ->
@@ -26,6 +29,9 @@ routes.param 'slug', (req, res, next, slug) ->
     , (err) ->
       next err
 
+##
+# View a story
+##
 routes.get '/truyen/:slug', (req, res, next) ->
   story = req.story
   # Get chapters of this story
@@ -34,6 +40,22 @@ routes.get '/truyen/:slug', (req, res, next) ->
     story.chapters = chapters
     res.locals.story = story
     res.render 'story'
+
+##
+# View a chapter
+##
+routes.get '/truyen/:slug/chuong-:number-:chapterSlug', (req, res, next) ->
+  story = req.story
+  # Get chapter
+  Chapter.findOne
+    sid: story._id
+    number: req.params.number
+    slug: req.params.chapterSlug
+  .exec()
+  .then (chapter) ->
+    res.locals.story = story
+    res.locals.chapter = chapter
+    res.render 'chapter'
 
 ##
 # Homepage
