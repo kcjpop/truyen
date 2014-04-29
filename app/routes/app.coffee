@@ -46,6 +46,10 @@ routes.get '/truyen/:slug', (req, res, next) ->
 ##
 routes.get '/truyen/:slug/chuong-:number-:chapterSlug', (req, res, next) ->
   story = req.story
+  story.getChapters select: '-content'
+  .then (chapters) ->
+    story.chapters = chapters
+
   # Get chapter
   Chapter.findOne
     sid: story._id

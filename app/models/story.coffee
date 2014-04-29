@@ -78,6 +78,7 @@ schema.methods.getChapters = (opt) ->
   if opt?
     query.limit if opt.limit? then opt.limit else 50
     query.skip  if opt.skip?  then opt.skip  else 0
+    query.select if opt.select? then opt.select else '-_v'
 
   return query
   .where('sid').equals @_id
