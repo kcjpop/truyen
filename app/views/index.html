@@ -28,7 +28,7 @@
             {{# latestStories}}
             <div class="ui two column grid">
               <div class="column">
-                <a href="/truyen/{{slug}}" title="Click để xem truyện này">{{name}}</a>
+                <a href="{{ url }}" title="Click để xem truyện này">{{name}}</a>
               </div>
               <div class="right aligned column">
                 <div class="ui green label"><a href="/truyen/{{slug}}/chuong-{{latestChapter.number}}-{{latestChapter.slug}}" title="Click để đọc chương này">Chương<div class="detail">{{latestChapter.number}}</div></a></div>
@@ -45,7 +45,7 @@
             {{# topStories}}
             <div class="ui two column grid">
               <div class="column">
-                <a href="/truyen/{{ slug }}">{{ name }}</a>
+                <a href="{{ url }}">{{ name }}</a>
               </div>
               <div class="right aligned column">
                 <div class="ui green label"><div class="detail">{{ views }}</div> Lượt xem</div>

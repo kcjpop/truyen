@@ -15,6 +15,12 @@ schema = m.Schema
     type: Date
     default: Date.now
 
+##
+# Middleware to generate URL
+##
+schema.post 'init', (doc) ->
+  doc.url = '/truyen/'+doc.slug
+
 # Get all categories inside all stories
 schema.statics.genres = (cb) ->
   promise = @find()
@@ -84,5 +90,6 @@ schema.methods.getChapters = (opt) ->
   .where('sid').equals @_id
   .sort 'number'
   .exec()
+
 
 module.exports = m.model 'Story', schema
