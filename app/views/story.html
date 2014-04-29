@@ -13,11 +13,11 @@
     <div class="column">
       <div class="ui segment">
         <div class="ui orange ribbon label">Tác giả</div>
-        <p><a href="/truyen?tac-gia={{story.author}}">{{story.author}}</a></p>
+        <p><a href="/truyen/tac-gia/{{story.author}}">{{story.author}}</a></p>
         <div class="ui orange ribbon label">Thể Loại</div>
         <p>
           {{# story.genres}}
-          <a href="/truyen?the-loai={{.}}" class="ui label">{{.}}</a>
+          <a href="/truyen/the-loai/{{.}}" class="ui label">{{.}}</a>
           {{/ story.genres}}
         </p>
         <div class="ui orange ribbon label">Nguồn</div>
