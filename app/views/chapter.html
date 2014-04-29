@@ -6,7 +6,7 @@
 <div class="ui left floating wide chapters sidebar vertical menu">
   <div class="header item">{{story.name}} <div class="ui mini green close button">Đóng</div></div>
   {{# story.chapters}}
-  <a href="/truyen/{{story.slug}}/" class="item">Chương {{number}}: {{name}}</a>
+  <a href="{{story.url}}{{url}}" class="item">Chương {{number}}: {{name}}</a>
   {{/ story.chapters}}
 </div>
 {{/yield-sidebar}}

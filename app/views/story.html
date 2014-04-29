@@ -9,7 +9,6 @@
     </div>
   </div>
 
-
   <div class="row">
     <div class="column">
       <div class="ui segment">
@@ -51,7 +50,7 @@
   <div class="row">
     <div class="ui column relaxed animated list">
       {{#story.chapters}}
-      <a href="/truyen/{{story.slug}}/chuong-{{number}}-{{slug}}" class="item"><i class="right bookmark icon"></i> Chương {{number}}: {{name}}</a>
+      <a href="{{story.url}}{{url}}" class="item"><i class="right bookmark icon"></i> Chương {{number}}: {{name}}</a>
       {{/story.chapters}}
     </div>
   </div>
