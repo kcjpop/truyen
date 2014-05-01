@@ -4,7 +4,7 @@ require '!style!css!../styles/main.css'
 # JavaScript
 $        = require 'jquery'
 Backbone = require 'backbone'
-App      = require './routers/app.coffee'
+App      = require './routers/app'
 
 require 'semantic-ui'
 

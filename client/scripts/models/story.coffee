@@ -1,4 +1,4 @@
-Backbone = require 'backbone'
+Base = require './base'
 
 model =
   defaults:
@@ -11,4 +11,4 @@ model =
     status  : ''
     added   : new Date()
 
-module.exports = Backbone.Model.extend model
+module.exports = Base.extend model
