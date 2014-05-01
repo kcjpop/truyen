@@ -26,10 +26,13 @@ route =
     # else
     #   model = new Story
 
-    model = new Story name: "Vợ Ta Là Hoa Hậu Giảng Đường"
-    view = new StoryView model: model
-    view.render()
-    @trigger 'main:changed', view
+    self = @
+    model = new Story slug: slug
+    model.fetch()
+    .done (data) ->
+      view = new StoryView model: model
+      view.render()
+      self.trigger 'main:changed', view
 
   stories: ->
     console.log 'A list of stories'

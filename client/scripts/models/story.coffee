@@ -1,13 +1,15 @@
 Base = require './base'
 
 model =
+  urlRoot: app.apiUrl + '/stories'
+  idAttribute: 'slug'
   defaults:
     name    : ''
     slug    : ''
     desc    : ''
     author  : ''
     aliases : ''
-    genres  : ''
+    genres  : []
     status  : ''
     added   : new Date()
 
