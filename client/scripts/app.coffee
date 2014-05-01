@@ -2,7 +2,10 @@
 require '!style!css!../styles/main.css'
 
 # JavaScript
-$ = require 'jquery'
+$        = require 'jquery'
+Backbone = require 'backbone'
+App      = require './routers/app.coffee'
+
 require 'semantic-ui'
 
 $ ->
@@ -17,3 +20,8 @@ $ ->
   $ '.ui.sidebar.navbar'
   .sidebar overlay: true
   .sidebar 'attach events', '.menu.item'
+
+  new App()
+  Backbone.history.start
+    root: '/'
+    pushState: true

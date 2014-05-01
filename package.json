@@ -5,6 +5,7 @@
   "description": "",
   "main": "server.coffee",
   "scripts": {
+    "webpack": "./node_modules/.bin/webpack --colors --progress" ,
     "test": "./node_modules/.bin/mocha"
   },
   "keywords": [

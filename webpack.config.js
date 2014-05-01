@@ -15,8 +15,10 @@ module.exports = {
   resolve: {
     modulesDirectories: [__dirname + '/client/bower_components', 'node_modules'],
     alias: {
-      'jquery': 'jquery/jquery',
-      'semantic-ui': 'semantic-ui/build/packaged/javascript/semantic'
+      'jquery'     : 'jquery/jquery',
+      'semantic-ui': 'semantic-ui/build/packaged/javascript/semantic',
+      'backbone'   : 'backbone/backbone',
+      'underscore' : 'underscore/underscore'
     }
   }
 };
