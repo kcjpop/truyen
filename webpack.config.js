@@ -1,4 +1,5 @@
 module.exports = {
+  cache: true,
   entry: __dirname + '/client/scripts/app.coffee',
   output: {
     path: __dirname + '/public/assets',
