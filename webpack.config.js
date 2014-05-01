@@ -16,9 +16,10 @@ module.exports = {
     modulesDirectories: [__dirname + '/client/bower_components', 'node_modules'],
     alias: {
       'jquery'     : 'jquery/jquery',
+      'hogan'      : 'hogan/web/builds/2.0.0/hogan-2.0.0',
       'semantic-ui': 'semantic-ui/build/packaged/javascript/semantic',
       'backbone'   : 'backbone/backbone',
-      'underscore' : 'underscore/underscore'
+      'underscore' : 'underscore/underscore',
     }
   }
 };
