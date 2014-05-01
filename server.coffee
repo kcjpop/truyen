@@ -26,8 +26,8 @@ app.use express.static __dirname+'/public'
 app.use '/api/v1/stories', require './app/routes/api/stories'
 app.use '/api/v1/chapters', require './app/routes/api/chapters'
 
-# GLOBALS
-app.locals.title = 'azTruyen, truyện gì cũng có, update nhanh nhất'
+# Expose Config to views
+app.locals.Config = global.config
 
 # Homepage
 app.use '/', require './app/routes/app'
