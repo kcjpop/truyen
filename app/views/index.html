@@ -59,12 +59,13 @@
     </div>
   </div>
 
+  {{# Config.app.mobileApps}}
   <div class="row">
     <div class="column">
       <div class="ui three column grid">
         <h3 class="ui red header">azTruyen cũng có hàng trên mobile</h3>
         <div class="center aligned column">
-          <a href="#"><i class="huge android icon"></i></a>
+          <a href="{{ Config.app.mobileApps.android }}" target="_blank"><i class="huge android icon"></i></a>
         </div>
         <div class="center aligned column popup" data-content="Đùa đấy, chưa có tiền mua Mac :(">
           <a href="#"><i class="huge apple icon"></i></a>
@@ -75,5 +76,6 @@
       </div>
     </div>
   </div>
+  {{/ Config.app.mobileApps}}
 
 </main>

@@ -14,9 +14,11 @@
           </div>
         </div>
 
+        {{# Config.app.showRegistration}}
         <a href="/xac-thuc" class="ui facebook shy mini button">
           <i class="facebook icon"></i> Đăng nhập
         </a>
+        {{/ Config.app.showRegistration}}
       </div>
 
       <div class="right menu">
@@ -38,19 +40,17 @@
 
       <div class="ui item"><i class="book icon"></i> Truyện
         <div class="menu">
-          <a href="#" class="item">Kiếm Hiệp</a>
-          <a href="#" class="item">Tiên Hiệp</a>
-          <a href="#" class="item">Sắc Hiệp</a>
-          <a href="#" class="item">Huyền Huyễn</a>
-          <a href="#" class="item">Đô Thị</a>
-          <a href="#" class="item">Dị Giới</a>
-          <a href="#" class="item">Ngôn Tình</a>
+            {{# storyGenres }}
+            <a href="/truyen/the-loai/{{.}}" class="item"><i class="bookmark icon"></i>{{.}}</a>
+            {{/ storyGenres }}
         </div>
       </div>
 
+      {{# Config.app.showRegistration}}
       <a href="#" class="facebook item">
         <i class="facebook icon"></i> Đăng nhập
       </a>
+      {{/ Config.app.showRegistration}}
 
       <div class="item">
         <div class="ui fluid icon find input">
