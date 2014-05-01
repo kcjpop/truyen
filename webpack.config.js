@@ -1,6 +1,6 @@
 module.exports = {
   cache: true,
-  entry: __dirname + '/client/scripts/app.coffee',
+  entry: __dirname + '/client/scripts/app',
   output: {
     path: __dirname + '/public/assets',
     publicPath: '/assets/',
@@ -14,6 +14,7 @@ module.exports = {
     ]
   },
   resolve: {
+    extensions: ["", ".js", ".coffee"],
     modulesDirectories: [__dirname + '/client/bower_components', 'node_modules'],
     alias: {
       'jquery'     : 'jquery/jquery',
