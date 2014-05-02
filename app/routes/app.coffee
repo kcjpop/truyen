@@ -61,6 +61,9 @@ routes.get '/truyen/:slug/chuong-:number-:chapterSlug', (req, res, next) ->
     res.locals.chapter = chapter
     res.render 'chapter'
 
+routes.get '/truyen', (req, res, next) ->
+  res.render 'stories'
+
 ##
 # Homepage
 ##

@@ -3,10 +3,9 @@
     <div class="ui fixed inverted navbar menu">
       <div class="left menu">
         <a href="/" class="active item"><i class="home icon"></i> Trang Chủ</a>
-        <a href="/tac-gia" class="item"><i class="user icon"></i> Tác Giả</a>
-
-        <div class="ui dropdown item"><i class="book icon"></i>
-          Truyện <i class="icon dropdown"></i>
+        <div class="ui dropdown item">
+          <a href="/truyen"><i class="book icon"></i> Truyện</a>
+          <i class="icon dropdown"></i>
           <div class="menu">
             {{# storyGenres }}
             <a href="/truyen/the-loai/{{.}}" class="item"><i class="bookmark icon"></i>{{.}}</a>
@@ -36,8 +35,6 @@
 
     <div class="ui top sidebar vertical navbar menu">
       <a href="index.html" class="active item"><i class="home icon"></i> Trang Chủ</a>
-      <a href="authors.html" class="item"><i class="user icon"></i> Tác Giả</a>
-
       <div class="ui item"><i class="book icon"></i> Truyện
         <div class="menu">
             {{# storyGenres }}

@@ -1,22 +1,25 @@
 _            = require 'underscore'
 Backbone     = require 'backbone'
 Story        = require '../models/story.coffee'
-HomepageView = require '../views/index/index.coffee'
-StoryView    = require '../views/story/index.coffee'
+Stories      = require '../collections/stories.coffee'
+HomepageView = require '../views/index/'
+StoryView    = require '../views/story/'
+StoriesView  = require '../views/stories/'
 
 route =
   routes:
-    'truyen/:slug': 'story'
-    'truyen'      : 'stories'
-    ''            : 'index'
+    'truyen/the-loai/:genre': 'genre'
+    'truyen/:slug'          : 'story'
+    'truyen'                : 'stories'
+    ''                      : 'index'
 
   initialize: ->
     self = @
     @main = $('main').first()
     # When main view is changed
     @on 'main:changed', (view) ->
+      console.log 'a'
       self.main.html view.$el.html()
-
 
   story: (slug) ->
     # Find this slug in Preload
@@ -35,7 +38,11 @@ route =
       self.trigger 'main:changed', view
 
   stories: ->
-    console.log 'A list of stories'
+    self = @
+    view = new StoriesView
+    view.render()
+    view.on 'rendered', ->
+      self.trigger 'main:changed', view
 
   index: ->
     self = @
