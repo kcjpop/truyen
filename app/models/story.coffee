@@ -15,9 +15,9 @@ schema = m.Schema
     type: Date
     default: Date.now
 
-# When converting to object, export virtual properties as well
-schema.set 'toObject',
-  virtuals: true
+# When converting to object and JSON, export virtual properties as well
+schema.set 'toObject', virtuals: true
+schema.set 'toJSON', virtuals: true
 
 # Define the URL of this schema
 schema.virtual('url').get ->
