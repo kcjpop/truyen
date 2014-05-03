@@ -8,6 +8,8 @@ Story   = require '../models/story'
 Chapter = require '../models/chapter'
 Counter = require '../models/counter'
 
+Preload = require '../utils/preload'
+
 # Get all genres of stories
 routes.use (req, res, next) ->
   Story.genres()
@@ -76,8 +78,10 @@ routes.get '/', (req, res, next) ->
 
   Q.all promises
   .then (results) ->
-    res.locals.topStories    = results[0]
-    res.locals.latestStories = results[1]
+    # Preload
+    Preload.add 'topStories', results[0]
+    Preload.add 'latestStories', results[1]
+    res.locals.Preload = Preload.stringify()
 
     res.render 'index'
 

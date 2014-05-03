@@ -2,6 +2,13 @@
 {{ Config.app.title }}
 {{/yield-title}}
 
+{{#yield-js}}
+<script>
+var Preload = Preload || {};
+Preload = {{& Preload}};
+</script>
+{{/yield-js}}
+
   <div class="row">
     <div class="column">
       <div class="ui icon message">
@@ -18,23 +25,7 @@
 
   <div class="row">
     <div class="column">
-      <div class="ui two column doubling grid">
-        <div class="column">
-          <h3 class="ui red header">Mới cập nhật</h3>
-
-          <div class="ui segment" id="latest">
-            {{# latestStories}}
-            <div class="ui two column grid">
-              <div class="column">
-                <a class="story" data-target="{{ url }}" href="{{ url }}" title="Click để xem truyện này">{{name}}</a>
-              </div>
-              <div class="right aligned column">
-                <div class="ui green label"><a href="{{url}}{{latestChapter.url }}" title="Click để đọc chương này">Chương<div class="detail">{{latestChapter.number}}</div></a></div>
-              </div>
-            </div>
-            {{/ latestStories}}
-          </div>
-        </div>
+      <div class="ui two column doubling grid" id="columns">
 
         <div class="column">
           <h3 class="ui red header">Hot nhất trong tuần</h3>
