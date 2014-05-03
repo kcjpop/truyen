@@ -15,11 +15,13 @@ schema = m.Schema
     type: Date
     default: Date.now
 
-##
-# Middleware to generate URL
-##
-schema.post 'init', (doc) ->
-  doc.url = '/truyen/'+doc.slug
+# When converting to object, export virtual properties as well
+schema.set 'toObject',
+  virtuals: true
+
+# Define the URL of this schema
+schema.virtual('url').get ->
+  return '/truyen/' + @slug
 
 # Get all categories inside all stories
 schema.statics.genres = (cb) ->
@@ -58,13 +60,18 @@ schema.statics.latest = (opt) ->
     # Find the latest chapter of each story
     promises = []
     stories.forEach (story) ->
-      promise = Chapter.findOne()
-      .where('sid').equals story._id
+      # Convert to obj
+      obj = story.toObject()
+
+      promise = Chapter.findOne
+        sid: story._id
+      .select '-content'
       .sort '-_id'
       .exec()
       .then (chapter) ->
-        story.latestChapter = chapter
-        return story
+        # Assign
+        obj.latestChapter = chapter
+        return obj
       promises.push Q promise
 
     Q.all promises
