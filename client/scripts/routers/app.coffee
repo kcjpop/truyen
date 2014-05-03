@@ -44,9 +44,9 @@ route =
 
   index: ->
     self = @
-    @view = new HomepageView
-    @listenTo @view, 'story:click', (e) ->
-      $target = $(e.target)
-      self.navigate $target.data('target'), true
+    view = new HomepageView
+    view.on 'rendered', ->
+      self.trigger 'main:changed', view
+    view.render()
 
 module.exports = Backbone.Router.extend route
