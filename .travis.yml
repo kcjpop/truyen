@@ -8,3 +8,5 @@ env:
   - NODE_ENV=test
 before_script:
   - coffee ./app/seeds
+notifications:
+  email: false
