@@ -18,7 +18,6 @@ route =
     @main = $('main').first()
     # When main view is changed
     @on 'main:changed', (view) ->
-      console.log 'a'
       self.main.html view.$el.html()
 
   story: (slug) ->
@@ -45,7 +44,7 @@ route =
 
   index: ->
     self = @
-    @view = new HomepageView()
+    @view = new HomepageView
     @listenTo @view, 'story:click', (e) ->
       $target = $(e.target)
       self.navigate $target.data('target'), true
