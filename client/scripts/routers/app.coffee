@@ -40,7 +40,6 @@ route =
   stories: ->
     self = @
     view = new StoriesView
-    view.render()
     view.on 'rendered', ->
       self.trigger 'main:changed', view
 

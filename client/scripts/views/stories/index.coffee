@@ -3,18 +3,22 @@ Stories  = require '../../collections/stories'
 ListView = require './list'
 
 view =
-  render: ->
+  initialize: ->
     # TODO: promiseeeeeeeeeeeee
     self = @
     # Get stories from API
     stories = new Stories
     stories.fetch()
     .done ->
-      list = new ListView
+      self.list = new ListView
         collection: stories
 
-      self.$el.append list.render().$el.html()
+      self.listenTo self.list, 'rendered', self.render
+      self.list.render()
 
+  render: ->
+    @$el.append @list.$el.html()
+    @trigger 'rendered'
     return @
 
 module.exports = Backbone.View.extend view
