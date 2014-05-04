@@ -12,20 +12,19 @@
     </div>
   </div>
 
+  {{#story.chapters.pagination}}
   <div class="row">
     <div class="center aligned column">
       <div class="ui borderless fluid pagination menu">
-        <a class="item">
-          <i class="left arrow icon"></i> Previous
-        </a>
-        <a class="item">1</a>
-        <a class="item">2</a>
-        <a class="item">3</a>
-        <a class="item">4</a>
-        <a class="item">5</a>
-        <a class="item">6</a>
-        <a class="item">
-          Next <i class="icon right arrow"></i>
-        </a>
+        {{#previous}}
+        <a class="item" href="{{.}}"><i class="left arrow icon"></i> Trang trước</a>
+        {{/previous}}
+        {{#links}}
+        <a class="item" href="{{link}}">{{number}}</a>
+        {{/links}}
+        {{#next}}
+        <a class="item" href="{{.}}">Trang sau <i class="icon right arrow"></i></a>
+        {{/next}}
       </div>
     </div>
+  {{/story.chapters.pagination}}
