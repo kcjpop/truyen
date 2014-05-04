@@ -1,0 +1,31 @@
+  <div class="row">
+    <div class="column">
+      <h2 class="ui red header">Mục lục</h2>
+    </div>
+  </div>
+
+  <div class="row" id="chapters">
+    <div class="ui column relaxed animated list">
+      {{#story.chapters}}
+      <a href="{{story.url}}{{url}}" class="item"><i class="right bookmark icon"></i> Chương {{number}}: {{name}}</a>
+      {{/story.chapters}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="center aligned column">
+      <div class="ui borderless fluid pagination menu">
+        <a class="item">
+          <i class="left arrow icon"></i> Previous
+        </a>
+        <a class="item">1</a>
+        <a class="item">2</a>
+        <a class="item">3</a>
+        <a class="item">4</a>
+        <a class="item">5</a>
+        <a class="item">6</a>
+        <a class="item">
+          Next <i class="icon right arrow"></i>
+        </a>
+      </div>
+    </div>
