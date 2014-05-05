@@ -15,10 +15,18 @@ route =
 
   initialize: ->
     self = @
+
+    # Routes that have RegExp
+    @route /truyen\/(.*)\/chuong-([0-9]+)-?(.*?)$/i, 'chapter'
+
     @main = $('main').first()
     # When main view is changed
     @on 'main:changed', (view) ->
       self.main.html view.$el.html()
+
+  chapter: (slug, number, name) ->
+    self = @
+
 
   story: (slug) ->
     # Find this slug in Preload
