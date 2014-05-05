@@ -19,10 +19,10 @@ route =
     # Routes that have RegExp
     @route /truyen\/(.*)\/chuong-([0-9]+)-?(.*?)$/i, 'chapter'
 
-    @main = $('main').first()
     # When main view is changed
     @on 'main:changed', (view) ->
-      self.main.html view.el
+      view.setElement $('main')
+      .render()
 
   chapter: (slug, number, name) ->
     self = @
@@ -57,8 +57,6 @@ route =
   index: ->
     self = @
     view = new HomepageView
-    view.on 'rendered', ->
-      self.trigger 'main:changed', view
-    view.render()
+    self.trigger 'main:changed', view
 
 module.exports = Backbone.Router.extend route
