@@ -18,8 +18,6 @@ view =
     @$el.html @template.render story: @model.attributes
 
     @$el.children('div:last').after @chapters.render().$el.html()
-
-    @trigger 'rendered'
     return @
 
 module.exports = Backbone.View.extend view

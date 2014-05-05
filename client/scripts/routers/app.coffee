@@ -44,15 +44,12 @@ route =
       .fetch()
       .done ->
         view = new StoryView model: model
-        view.on 'rendered', ->
-          self.trigger 'main:changed', view
-        view.render()
+        self.trigger 'main:changed', view
 
   stories: ->
     self = @
     view = new StoriesView
-    view.on 'rendered', ->
-      self.trigger 'main:changed', view
+    self.trigger 'main:changed', view
 
   index: ->
     self = @

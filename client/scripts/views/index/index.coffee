@@ -28,6 +28,4 @@ view =
     columns.append @latestView.render().$el.html()
     columns.append @hottestView.render().$el.html()
 
-    @trigger 'rendered'
-
 module.exports = Backbone.View.extend view
