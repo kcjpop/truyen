@@ -22,7 +22,7 @@ route =
     @main = $('main').first()
     # When main view is changed
     @on 'main:changed', (view) ->
-      self.main.html view.$el.html()
+      self.main.html view.el
 
   chapter: (slug, number, name) ->
     self = @
