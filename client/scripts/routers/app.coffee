@@ -31,10 +31,14 @@ route =
     self = @
     model = new Story slug: slug
     model.fetch()
-    .done (data) ->
-      view = new StoryView model: model
-      view.render()
-      self.trigger 'main:changed', view
+    .done ->
+      model.get 'chapters'
+      .fetch()
+      .done ->
+        view = new StoryView model: model
+        view.on 'rendered', ->
+          self.trigger 'main:changed', view
+        view.render()
 
   stories: ->
     self = @
