@@ -10,7 +10,10 @@ schema = m.Schema
     type: Date
     default: Date.now
 
-schema.post 'init', (doc) ->
-  doc.url = '/chuong-'+doc.number+'-'+doc.slug
+schema.set 'toObject', virtuals: true
+schema.set 'toJSON', virtuals: true
+
+schema.virtual('url').get ->
+  '/chuong-'+@number+'-'+@slug
 
 module.exports = m.model 'Chapter', schema
