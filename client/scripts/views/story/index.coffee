@@ -7,7 +7,10 @@ view =
   constructor: ->
     Backbone.View.apply @, arguments
     @template = Hogan.compile tpl
-    @chapters = new ChaptersView collection: @model.get 'chapters'
+    @chapters = new ChaptersView
+      story: @model
+      collection: @model.get 'chapters'
+
     return @
 
   render: ->
