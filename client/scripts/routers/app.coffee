@@ -31,7 +31,8 @@ route =
     # ID lookup in cache
     # @todo: Implement backward compability
     cache = app.cache.chapters
-    key = slug + '-' + number
+    storyId = app.cache.stories[slug]
+    key = storyId + '-' + number
     if cache[key]?
       model = new Chapter _id: cache[key]
 
@@ -53,6 +54,8 @@ route =
     model = new Story slug: slug
     model.fetch()
     .done ->
+      app.cache.stories = app.cache.stories || {}
+      app.cache.stories[slug] = model.get '_id'
       model.get 'chapters'
       .fetch()
       .done ->

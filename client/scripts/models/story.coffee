@@ -27,11 +27,10 @@ model =
     self = @
 
     # global: app
-    app.cache = app.cache || {}
     app.cache.chapters = app.cache.chapters || {}
 
     push = (chapter) ->
-      key = self.get('slug') + '-' + chapter.get('number')
+      key = self.get('_id') + '-' + chapter.get('number')
       value = chapter.get '_id'
       app.cache.chapters[key] = value
 

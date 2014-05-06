@@ -4,8 +4,18 @@ Chapter = require '../models/chapter'
 col =
   model: Chapter
 
+  pushToCache: (items) ->
+    app.cache.chapters = app.cache.chapters || {}
+    push = (item) ->
+      key   = item.sid+'-'+item.number
+      value = item._id
+      app.cache.chapters[key] = value
+
+    push item for item in items
+
   parse: (res, opt) ->
     @paging = res.paging if res.paging?
+    @pushToCache res.data
     return res.data
 
   nextPage: ->
