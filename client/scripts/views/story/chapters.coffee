@@ -20,7 +20,9 @@ view =
       chapters: @collection.toJSON()
       paging: @collection.paging
 
+
     @$el.html @tpl.render data
+    @trigger 'page:changed', @collection.paging.current
     return @
 
   goNextPage: (e) ->

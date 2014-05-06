@@ -9,6 +9,10 @@ view =
       story: @model
       collection: @model.get 'chapters'
 
+    @chapters.on 'page:changed', (currentPage) =>
+      url = '/truyen/'+@model.get('slug')+'/p'+currentPage
+      app.router.navigate url, replace: true
+
   render: ->
     # Render the main view hoho
     @$el.html @template.render story: @model.attributes
