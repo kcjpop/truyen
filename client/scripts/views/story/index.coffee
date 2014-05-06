@@ -1,11 +1,10 @@
-Backbone     = require 'backbone'
-Hogan        = require 'hogan'
+Base         = require '../base'
 tpl          = require 'raw!../../../../app/views/story.html'
 ChaptersView = require './chapters'
 
 view =
   initialize: ->
-    @template = Hogan.compile tpl
+    @template = @hogan.compile tpl
     @chapters = new ChaptersView
       story: @model
       collection: @model.get 'chapters'
@@ -13,10 +12,8 @@ view =
   render: ->
     # Render the main view hoho
     @$el.html @template.render story: @model.attributes
-
-    @chapters.setElement @$el.find('#chapters-wrapper')
-    .render()
+    @assign '#chapters-wrapper', @chapters
 
     return @
 
-module.exports = Backbone.View.extend view
+module.exports = Base.extend view
