@@ -22,20 +22,22 @@ routes.get '/', (req, res, next) ->
   promise = Chapter.count sid: req.story._id
   .exec()
   .then (count) ->
-    path = '/stories/'+req.story.slug+'/chapters'
+    # There is no pagination here
+    return if count <= limit
 
+    pagination = {}
+    pagination.total = Math.ceil count / limit
+
+    path = '/stories/'+req.story.slug+'/chapters'
     if page * limit <= count
       query = req.query
       query.page = page + 1
-
-      pagination = pagination || {}
       pagination.next = path + '?' + concatQuery(query)
 
     if page - 1 >= 1
       query = req.query
       query.page = page - 1
 
-      pagination = pagination || {}
       pagination.previous = path + '?' + concatQuery(query)
     return pagination
 
