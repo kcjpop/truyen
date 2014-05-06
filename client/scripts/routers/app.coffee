@@ -1,10 +1,12 @@
 _            = require 'underscore'
 Backbone     = require 'backbone'
-Story        = require '../models/story.coffee'
-Stories      = require '../collections/stories.coffee'
+Story        = require '../models/story'
+Chapter      = require '../models/chapter'
+Stories      = require '../collections/stories'
 HomepageView = require '../views/index/'
 StoryView    = require '../views/story/'
 StoriesView  = require '../views/stories/'
+ChapterView  = require '../views/chapter/'
 
 route =
   routes:
@@ -15,10 +17,29 @@ route =
 
   initialize: ->
     self = @
-    @main = $('main').first()
+
+    # Routes that have RegExp
+    @route /truyen\/(.*)\/chuong-([0-9]+)-?(.*?)$/i, 'chapter'
+
     # When main view is changed
     @on 'main:changed', (view) ->
-      self.main.html view.$el.html()
+      view.setElement $('main')
+      .render()
+
+  chapter: (slug, number, name) ->
+    self = @
+    # ID lookup in cache
+    # @todo: Implement backward compability
+    cache = app.cache.chapters
+    key = slug + '-' + number
+    if cache[key]?
+      model = new Chapter _id: cache[key]
+
+    model.fetch()
+    .done ->
+      view = new ChapterView model: model
+      self.trigger 'main:changed', view
+
 
   story: (slug) ->
     # Find this slug in Preload
@@ -35,22 +56,18 @@ route =
       model.get 'chapters'
       .fetch()
       .done ->
+        model.pushToCache()
         view = new StoryView model: model
-        view.on 'rendered', ->
-          self.trigger 'main:changed', view
-        view.render()
+        self.trigger 'main:changed', view
 
   stories: ->
     self = @
     view = new StoriesView
-    view.on 'rendered', ->
-      self.trigger 'main:changed', view
+    self.trigger 'main:changed', view
 
   index: ->
     self = @
     view = new HomepageView
-    view.on 'rendered', ->
-      self.trigger 'main:changed', view
-    view.render()
+    self.trigger 'main:changed', view
 
 module.exports = Backbone.Router.extend route

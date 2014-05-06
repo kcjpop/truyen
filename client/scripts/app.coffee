@@ -21,7 +21,7 @@ $ ->
   .sidebar overlay: true
   .sidebar 'attach events', '.menu.item'
 
-  truyen = new App()
+  app.router = new App()
   Backbone.history.start
     root: '/'
     pushState: true
@@ -37,5 +37,5 @@ $ ->
       url = href.replace /^\//, ''
       .replace '\#\!\/', ''
       # Instruct Backbone to trigger routing events
-      truyen.navigate url, { trigger: true }
+      app.router.navigate url, { trigger: true }
     return false

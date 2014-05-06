@@ -18,7 +18,6 @@ view =
 
   render: ->
     @$el.append @list.$el.html()
-    @trigger 'rendered'
     return @
 
 module.exports = Backbone.View.extend view

@@ -3,18 +3,18 @@ Hogan    = require 'hogan'
 tpl      = require 'raw!../../../../app/views/story/chapters.html'
 
 view =
-  constructor: ->
+  constructor: (opt) ->
     Backbone.View.apply @, arguments
+    @story = opt.story
     @tpl = Hogan.compile tpl
     return @
 
   render: ->
     data =
-      story:
-        chapters: @collection.toJSON()
+      story: @story.toJSON()
+      chapters: @collection.toJSON()
 
     @$el.html @tpl.render data
-
     return @
 
 module.exports = Backbone.View.extend view

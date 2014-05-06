@@ -1,30 +1,30 @@
-  <div class="row">
-    <div class="column">
-      <h2 class="ui red header">Mục lục</h2>
+<div class="row">
+  <div class="column">
+    <h2 class="ui red header">Mục lục</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="ui column relaxed animated list">
+    {{#chapters}}
+    <a href="{{story.url}}{{url}}" class="item chapter" data-id="{{_id}}"><i class="right bookmark icon"></i> Chương {{number}}: {{name}}</a>
+    {{/chapters}}
+  </div>
+</div>
+
+{{#pagination}}
+<div class="row">
+  <div class="center aligned column">
+    <div class="ui borderless fluid pagination menu">
+      {{#previous}}
+      <a class="item" href="{{.}}"><i class="left arrow icon"></i> Trang trước</a>
+      {{/previous}}
+      {{#links}}
+      <a class="item" href="{{link}}">{{number}}</a>
+      {{/links}}
+      {{#next}}
+      <a class="item" href="{{.}}">Trang sau <i class="icon right arrow"></i></a>
+      {{/next}}
     </div>
   </div>
-
-  <div class="row" id="chapters">
-    <div class="ui column relaxed animated list">
-      {{#story.chapters}}
-      <a href="{{story.url}}{{url}}" class="item"><i class="right bookmark icon"></i> Chương {{number}}: {{name}}</a>
-      {{/story.chapters}}
-    </div>
-  </div>
-
-  {{#story.chapters.pagination}}
-  <div class="row">
-    <div class="center aligned column">
-      <div class="ui borderless fluid pagination menu">
-        {{#previous}}
-        <a class="item" href="{{.}}"><i class="left arrow icon"></i> Trang trước</a>
-        {{/previous}}
-        {{#links}}
-        <a class="item" href="{{link}}">{{number}}</a>
-        {{/links}}
-        {{#next}}
-        <a class="item" href="{{.}}">Trang sau <i class="icon right arrow"></i></a>
-        {{/next}}
-      </div>
-    </div>
-  {{/story.chapters.pagination}}
+{{/pagination}}
