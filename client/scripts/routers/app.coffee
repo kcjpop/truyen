@@ -43,6 +43,7 @@ route =
       model.get 'chapters'
       .fetch()
       .done ->
+        model.pushToCache()
         view = new StoryView model: model
         self.trigger 'main:changed', view
 
