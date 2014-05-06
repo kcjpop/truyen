@@ -12,19 +12,17 @@
   </div>
 </div>
 
-{{#pagination}}
+{{#paging}}
 <div class="row">
   <div class="center aligned column">
     <div class="ui borderless fluid pagination menu">
       {{#previous}}
       <a class="item" href="{{.}}"><i class="left arrow icon"></i> Trang trước</a>
       {{/previous}}
-      {{#links}}
-      <a class="item" href="{{link}}">{{number}}</a>
-      {{/links}}
+      <div class="item">Trang {{@paging.current}}/<strong>{{paging.total}}</strong></div>
       {{#next}}
       <a class="item" href="{{.}}">Trang sau <i class="icon right arrow"></i></a>
       {{/next}}
     </div>
   </div>
-{{/pagination}}
+{{/paging}}
