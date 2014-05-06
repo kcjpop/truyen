@@ -22,11 +22,15 @@ routes.get '/', (req, res, next) ->
   promise = Chapter.count sid: req.story._id
   .exec()
   .then (count) ->
-    # There is no pagination here
+    # There is no pagination if the total records is less than limit
     return if count <= limit
 
     pagination = {}
+    # Total page
     pagination.total = Math.ceil count / limit
+
+    # Current page
+    pagination.current = page
 
     path = '/stories/'+req.story.slug+'/chapters'
     if page * limit <= count
