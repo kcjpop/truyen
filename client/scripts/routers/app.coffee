@@ -6,6 +6,7 @@ Stories      = require '../collections/stories'
 HomepageView = require '../views/index/'
 StoryView    = require '../views/story/'
 StoriesView  = require '../views/stories/'
+ChapterView  = require '../views/chapter/'
 
 route =
   routes:
@@ -36,7 +37,8 @@ route =
 
     model.fetch()
     .done ->
-      console.log model.toJSON()
+      view = new ChapterView model: model
+      self.trigger 'main:changed', view
 
 
   story: (slug) ->
