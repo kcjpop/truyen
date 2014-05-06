@@ -1,7 +1,8 @@
 _            = require 'underscore'
 Backbone     = require 'backbone'
-Story        = require '../models/story.coffee'
-Stories      = require '../collections/stories.coffee'
+Story        = require '../models/story'
+Chapter      = require '../models/chapter'
+Stories      = require '../collections/stories'
 HomepageView = require '../views/index/'
 StoryView    = require '../views/story/'
 StoriesView  = require '../views/stories/'
@@ -26,6 +27,16 @@ route =
 
   chapter: (slug, number, name) ->
     self = @
+    # ID lookup in cache
+    # @todo: Implement backward compability
+    cache = app.cache.chapters
+    key = slug + '-' + number
+    if cache[key]?
+      model = new Chapter _id: cache[key]
+
+    model.fetch()
+    .done ->
+      console.log model.toJSON()
 
 
   story: (slug) ->

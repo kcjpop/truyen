@@ -2,6 +2,9 @@ B = require './base'
 
 model =
   urlRoot: app.apiUrl + '/chapters'
+
+  idAttribute: '_id'
+
   defaults:
     sid     : ''
     number  : 0
