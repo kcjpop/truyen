@@ -17,11 +17,11 @@
   <div class="center aligned column">
     <div class="ui borderless fluid pagination menu">
       {{#previous}}
-      <a class="item" href="{{.}}"><i class="left arrow icon"></i> Trang trước</a>
+      <a class="item" href="{{paging.previous}}"><i class="left arrow icon"></i> Trang trước</a>
       {{/previous}}
-      <div class="item">Trang {{@paging.current}}/<strong>{{paging.total}}</strong></div>
+      <div class="item">Trang {{paging.current}}/<strong>{{paging.total}}</strong></div>
       {{#next}}
-      <a class="item" href="{{.}}">Trang sau <i class="icon right arrow"></i></a>
+      <a class="item" href="{{paging.next}}">Trang sau <i class="icon right arrow"></i></a>
       {{/next}}
     </div>
   </div>
