@@ -22,7 +22,7 @@ view =
 
 
     @$el.html @tpl.render data
-    @trigger 'page:changed', @collection.paging.current
+    @trigger 'page:changed', @collection.paging.current if @collection.paging?
     return @
 
   goNextPage: (e) ->
