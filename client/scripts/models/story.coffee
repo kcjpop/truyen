@@ -1,4 +1,5 @@
-Base = require './base'
+Base     = require './base'
+Raion    = require '../utils/raion'
 Chapters = require '../collections/chapters'
 
 model =
@@ -23,19 +24,10 @@ model =
     chapters.url = @urlRoot + '/' + @id + '/chapters'
     @set 'chapters', chapters
 
-  pushToCache: ->
-    self = @
-
-    # global: app
-    app.cache.chapters = app.cache.chapters || {}
-
-    push = (chapter) ->
-      key = self.get('_id') + '-' + chapter.get('number')
-      value = chapter.get '_id'
-      app.cache.chapters[key] = value
-
-    @get 'chapters'
-    .forEach push
+  parse: (data, opt) ->
+    # Put this to Raion
+    Raion.Setter.story data
+    return data
 
 
 module.exports = Base.extend model

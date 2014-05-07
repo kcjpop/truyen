@@ -1,5 +1,6 @@
 _            = require 'underscore'
 Backbone     = require 'backbone'
+Raion        = require '../utils/raion'
 Story        = require '../models/story'
 Chapter      = require '../models/chapter'
 Stories      = require '../collections/stories'
@@ -29,12 +30,11 @@ route =
   chapter: (slug, number, name) ->
     self = @
     # ID lookup in cache
-    # @todo: Implement backward compability
-    cache = app.cache.chapters
-    storyId = app.cache.stories[slug]
-    key = storyId + '-' + number
-    if cache[key]?
-      model = new Chapter _id: cache[key]
+    sid = Raion.Getter.story slug
+    _id = Raion.Getter.chapter sid, number
+    if _id?
+      model = new Chapter _id: _id
+      # @todo: Implement backward compability with AJAX request
 
     model.fetch()
     .done ->
@@ -54,12 +54,9 @@ route =
     model = new Story slug: slug
     model.fetch()
     .done ->
-      app.cache.stories = app.cache.stories || {}
-      app.cache.stories[slug] = model.get '_id'
       model.get 'chapters'
       .fetch()
       .done ->
-        model.pushToCache()
         view = new StoryView model: model
         self.trigger 'main:changed', view
 
