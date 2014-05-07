@@ -10,7 +10,7 @@ view =
       collection: @model.get 'chapters'
 
     @chapters.on 'page:changed', (currentPage) =>
-      url = '/truyen/'+@model.get('slug')+'/p'+currentPage
+      url = '/truyen/'+@model.get('slug')+'/'+currentPage
       app.router.navigate url, replace: true
 
   render: ->

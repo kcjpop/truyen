@@ -42,7 +42,7 @@ route =
       self.trigger 'main:changed', view
 
 
-  story: (slug, page) ->
+  story: (slug, page = 1) ->
     self = @
 
     model = new Story slug: slug
