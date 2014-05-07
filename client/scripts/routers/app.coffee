@@ -12,7 +12,7 @@ ChapterView  = require '../views/chapter/'
 route =
   routes:
     'truyen/the-loai/:genre': 'genre'
-    'truyen/:slug(/p:page)' : 'story'
+    'truyen/:slug(/:page)'  : 'story'
     'truyen'                : 'stories'
     ''                      : 'index'
 
