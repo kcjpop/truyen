@@ -34,7 +34,7 @@ routes.param 'slug', (req, res, next, slug) ->
 ##
 # View a story
 ##
-routes.get '/truyen/:slug', (req, res, next) ->
+routes.get '/truyen/:slug/p:page?', (req, res, next) ->
   story = req.story
   # Get chapters of this story
   story.getChapters()

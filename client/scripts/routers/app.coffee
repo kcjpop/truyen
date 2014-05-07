@@ -12,7 +12,7 @@ ChapterView  = require '../views/chapter/'
 route =
   routes:
     'truyen/the-loai/:genre': 'genre'
-    'truyen/:slug'          : 'story'
+    'truyen/:slug(/p:page)' : 'story'
     'truyen'                : 'stories'
     ''                      : 'index'
 
@@ -42,20 +42,14 @@ route =
       self.trigger 'main:changed', view
 
 
-  story: (slug) ->
-    # Find this slug in Preload
-    # story = _.findWhere Preload.stories, slug: slug
-    # if story?
-    #   model = story
-    # else
-    #   model = new Story
-
+  story: (slug, page) ->
     self = @
+
     model = new Story slug: slug
     model.fetch()
     .done ->
       model.get 'chapters'
-      .fetch()
+      .fetch data: page: page
       .done ->
         view = new StoryView model: model
         self.trigger 'main:changed', view
