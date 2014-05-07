@@ -32,18 +32,6 @@ routes.param 'slug', (req, res, next, slug) ->
       next err
 
 ##
-# View a story
-##
-routes.get '/truyen/:slug/:page?', (req, res, next) ->
-  story = req.story
-  # Get chapters of this story
-  story.getChapters()
-  .then (chapters) ->
-    story.chapters = chapters
-    res.locals.story = story
-    res.render 'story'
-
-##
 # View a chapter
 ##
 routes.get '/truyen/:slug/chuong-:number-:chapterSlug', (req, res, next) ->
@@ -63,6 +51,21 @@ routes.get '/truyen/:slug/chuong-:number-:chapterSlug', (req, res, next) ->
     res.locals.chapter = chapter
     res.render 'chapter'
 
+##
+# View a story
+##
+routes.get '/truyen/:slug/:page?', (req, res, next) ->
+  story = req.story
+  # Get chapters of this story
+  story.getChapters()
+  .then (chapters) ->
+    story.chapters = chapters
+    res.locals.story = story
+    res.render 'story'
+
+##
+# View all stories
+##
 routes.get '/truyen', (req, res, next) ->
   res.render 'stories'
 
