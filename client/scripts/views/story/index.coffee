@@ -1,5 +1,5 @@
 Base         = require '../base'
-tpl          = require 'raw!../../../../app/views/story.html'
+tpl          = require 'raw!../../tpl/story'
 ChaptersView = require './chapters'
 
 view =

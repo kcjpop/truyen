@@ -1,6 +1,6 @@
 Backbone = require 'backbone'
 Hogan    = require 'hogan'
-tpl      = require 'raw!../../../../app/views/index/hottest.html'
+tpl      = require 'raw!../../tpl/index/hottest'
 
 view =
   render: ->

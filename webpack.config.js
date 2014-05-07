@@ -14,7 +14,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ["", ".js", ".coffee"],
+    extensions: ["", ".js", ".coffee", ".html"],
     modulesDirectories: [__dirname + '/client/bower_components', 'node_modules'],
     alias: {
       'jquery'     : 'jquery/jquery',

@@ -3,7 +3,7 @@ LatestView  = require './latest'
 HottestView = require './hottest'
 Stories     = require '../../collections/stories'
 Hogan       = require 'hogan'
-tpl         = require 'raw!../../../../app/views/index.html'
+tpl         = require 'raw!../../tpl/index'
 
 #
 # Index view will create 2 sub-views: latest and most viewed

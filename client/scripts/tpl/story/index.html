@@ -1,0 +1,46 @@
+{{#yield-title}}
+{{story.name}}
+{{/yield-title}}
+
+<div class="row">
+  <div class="column">
+    <h2 class="ui red center aligned header">{{story.name}}</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <div class="ui segment">
+      <div class="ui orange ribbon label">Tác giả</div>
+      <p><a href="/truyen/tac-gia/{{story.author}}">{{story.author}}</a></p>
+      <div class="ui orange ribbon label">Thể Loại</div>
+      <p>
+        {{# story.genres}}
+        <a href="/truyen/the-loai/{{.}}" class="ui label">{{.}}</a>
+        {{/ story.genres}}
+      </p>
+      <div class="ui orange ribbon label">Nguồn</div>
+      <p>Sưu tầm</p>
+      <div class="ui orange ribbon label">Giới thiệu</div>
+      <p>{{& story.desc}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <div class="ui form">
+      <div class="inline fields">
+        <div class="ui action left icon mini input">
+          <input type="email" placeholder="abc@lanla.com">
+          <div class="ui mini green button">Nhận chapter mới qua email</div>
+          <i class="mail icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" id="chapters-wrapper"></div>
+</div>

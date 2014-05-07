@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+  <title>{{{ yield-title }}}</title>
+  {{> head }}
+</head>
+<body>
+  {{{ yield-sidebar }}}
+
+  {{> header }}
+
+  <main class="ui page grid main">
+  {{{ yield }}}
+  </main>
+
+  {{> footer }}
+
+  {{> js }}
+</body>
+</html>

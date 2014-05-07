@@ -1,6 +1,6 @@
 Backbone = require 'backbone'
 Hogan    = require 'hogan'
-tpl      = require 'raw!../../../../app/views/stories.html'
+tpl      = require 'raw!../../tpl/stories'
 
 view =
   initialize: ->

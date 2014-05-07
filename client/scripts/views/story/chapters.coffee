@@ -1,6 +1,6 @@
 Backbone = require 'backbone'
 Hogan    = require 'hogan'
-tpl      = require 'raw!../../../../app/views/story/chapters.html'
+tpl      = require 'raw!../../tpl/story/chapters'
 
 view =
   events:

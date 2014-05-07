@@ -1,0 +1,64 @@
+{{#yield-title}}
+{{story.name}} - Chương {{chapter.number}}: {{chapter.name}}
+{{/yield-title}}
+
+{{#yield-sidebar}}
+<div class="ui left floating wide chapters sidebar vertical menu">
+  <div class="header item">{{story.name}} <div class="ui mini green close button">Đóng</div></div>
+  {{# story.chapters}}
+  <a href="{{story.url}}{{url}}" class="item">Chương {{number}}: {{name}}</a>
+  {{/ story.chapters}}
+</div>
+{{/yield-sidebar}}
+
+  <div class="computer tablet only row">
+    <div class="column">
+      <div class="ui breadcrumb">
+        {{#story.genres}}
+        <a href="/truyen/the-loai/{{.}}" class="section">{{.}}</a>,
+        {{/story.genres}}
+        <div class="divider"> / </div>
+        <a href="{{ story.url }}" class="section">{{story.name}}</a>
+        <div class="divider"> / </div>
+        <div class="active section">Chương {{chapter.number}}: {{chapter.name}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <h2 class="ui red center aligned header">
+        Chương {{chapter.number}}: {{chapter.name}}
+      </h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="ui basic segment chapter">
+        {{& chapter.content}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="ui three column grid">
+        <div class="column">
+          <div class="ui left icon green button">
+            <i class="left arrow icon"></i>
+          </div>
+        </div>
+
+        <div class="center aligned column">
+          <div class="ui labeled green button toc">Mục lục</div>
+        </div>
+
+        <div class="right aligned column">
+          <div class="ui right icon green button">
+            <i class="right arrow icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>

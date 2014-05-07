@@ -1,5 +1,5 @@
 Base = require '../base'
-tpl  = require 'raw!../../../../app/views/chapter.html'
+tpl  = require 'raw!../../tpl/chapter'
 
 view =
   initialize: (opt) ->
