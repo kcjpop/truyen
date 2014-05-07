@@ -30,17 +30,25 @@ route =
   chapter: (slug, number, name) ->
     self = @
     # ID lookup in cache
-    sid = Raion.Getter.story slug
-    _id = Raion.Getter.chapter sid, number
-    if _id?
-      model = new Chapter _id: _id
-      # @todo: Implement backward compability with AJAX request
-
-    model.fetch()
+    story = new Story slug: slug
+    story.fetch()
     .done ->
-      view = new ChapterView model: model
-      self.trigger 'main:changed', view
+      sid = story.get '_id'
+      _id = Raion.Getter.chapter sid, number
+      if _id?
+        model = new Chapter _id: _id
+      else
+        # @todo: Implement backward compability with AJAX request
+        model = new Chapter
+          sid: sid
+          number: number
 
+      model.fetch()
+      .done ->
+        view = new ChapterView
+          model: model
+          story: story
+        self.trigger 'main:changed', view
 
   story: (slug, page = 1) ->
     self = @
