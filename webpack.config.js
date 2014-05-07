@@ -1,16 +1,17 @@
 module.exports = {
-  cache: true,
   entry: __dirname + '/client/scripts/app',
   output: {
     path: __dirname + '/public/assets',
     publicPath: '/assets/',
-    filename: 'bundle.js'
+    filename: '[name].js',
+    chunkFilename: '[chunkhash].js'
   },
   module: {
     loaders: [
       { test: /\.css$/, loader: 'style!css'},
       { test: /\.coffee$/, loader: 'coffee-loader' },
-      { test: /\.(jpg|png|gif|svg|eot|ttf|woff)/, loader: 'file-loader' }
+      { test: /\.(jpg|png|gif|svg)/, loader: 'file-loader?prefix=img/' },
+      { test: /\.(eot|ttf|woff)/, loader: 'file-loader?prefix=font/' }
     ]
   },
   resolve: {
