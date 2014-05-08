@@ -1,13 +1,6 @@
 _            = require 'underscore'
 Backbone     = require 'backbone'
 Raion        = require '../utils/raion'
-Story        = require '../models/story'
-Chapter      = require '../models/chapter'
-Stories      = require '../collections/stories'
-HomepageView = require '../views/index/'
-StoryView    = require '../views/story/'
-StoriesView  = require '../views/stories/'
-ChapterView  = require '../views/chapter/'
 
 route =
   routes:
@@ -29,47 +22,70 @@ route =
 
   chapter: (slug, number, name) ->
     self = @
-    # ID lookup in cache
-    story = new Story slug: slug
-    story.fetch()
-    .done ->
-      sid = story.get '_id'
-      _id = Raion.Getter.chapter sid, number
-      if _id?
-        model = new Chapter _id: _id
-      else
-        # @todo: Implement backward compability with AJAX request
-        model = new Chapter
-          sid: sid
-          number: number
 
-      model.fetch()
+    require.ensure [
+      '../models/story'
+      '../models/chapter'
+      '../views/chapter/'
+    ], (require) ->
+      Story       = require '../models/story'
+      Chapter     = require '../models/chapter'
+      ChapterView = require '../views/chapter/'
+
+      # ID lookup in cache
+      story = new Story slug: slug
+      story.fetch()
       .done ->
-        view = new ChapterView
-          model: model
-          story: story
-        self.trigger 'main:changed', view
+        sid = story.get '_id'
+        _id = Raion.Getter.chapter sid, number
+        if _id?
+          model = new Chapter _id: _id
+        else
+          # @todo: Implement backward compability with AJAX request
+          model = new Chapter
+            sid: sid
+            number: number
+
+        model.fetch()
+        .done ->
+          view = new ChapterView
+            model: model
+            story: story
+          self.trigger 'main:changed', view
 
   story: (slug, page = 1) ->
     self = @
 
-    model = new Story slug: slug
-    model.fetch()
-    .done ->
-      model.get 'chapters'
-      .fetch data: page: page
+    require.ensure [
+      '../models/story'
+      '../views/story/'
+    ], (require) ->
+      Story     = require '../models/story'
+      StoryView = require '../views/story/'
+
+      model = new Story slug: slug
+      model.fetch()
       .done ->
-        view = new StoryView model: model
-        self.trigger 'main:changed', view
+        model.get 'chapters'
+        .fetch data: page: page
+        .done ->
+          view = new StoryView model: model
+          self.trigger 'main:changed', view
 
   stories: ->
     self = @
-    view = new StoriesView
-    self.trigger 'main:changed', view
+
+    require.ensure ['../views/stories/'], (require) ->
+      StoriesView  = require '../views/stories/'
+      view = new StoriesView
+      self.trigger 'main:changed', view
 
   index: ->
     self = @
-    view = new HomepageView
-    self.trigger 'main:changed', view
+
+    require.ensure ['../views/index/'], (require) ->
+      HomepageView = require '../views/index/'
+      view = new HomepageView
+      self.trigger 'main:changed', view
 
 module.exports = Backbone.Router.extend route
