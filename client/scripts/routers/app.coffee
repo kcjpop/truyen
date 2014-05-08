@@ -75,10 +75,18 @@ route =
   stories: ->
     self = @
 
-    require.ensure ['../views/stories/'], (require) ->
-      StoriesView  = require '../views/stories/'
-      view = new StoriesView
-      self.trigger 'main:changed', view
+    require.ensure [
+      '../views/stories/'
+      '../collections/stories'
+    ], (require) ->
+      Stories     = require '../collections/stories'
+      StoriesView = require '../views/stories/'
+
+      stories = new Stories
+      stories.fetch()
+      .done ->
+        view = new StoriesView stories: stories
+        self.trigger 'main:changed', view
 
   index: ->
     self = @

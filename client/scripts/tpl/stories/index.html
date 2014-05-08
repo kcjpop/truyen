@@ -1,34 +1,7 @@
-
 <div class="row">
   <div class="right aligned column">
     <div class="ui labeled mini green button toc">Tìm theo tên</div>
   </div>
 </div>
 
-<div class="row">
-  <div class="column">
-    <table class="ui table segment" id="stories">
-      <thead>
-        <tr>
-          <th>Truyện</th>
-          <th>Tác giả</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {{# stories}}
-        <tr>
-          <td><a href="{{url}}"><i class="right book icon"></i> {{name}}</a></td>
-          <td><a href="/truyen/tac-gia/{{author}}">{{author}}</a></td>
-          <td>
-            <a href="#">
-              <span class="ui right floated green label">Chương 992</span>
-            </a>
-          </td>
-        </tr>
-        {{/ stories}}
-
-      </tbody>
-    </table>
-  </div>
-</div>
+<div class="row stories"></div>

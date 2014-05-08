@@ -1,23 +1,15 @@
-Backbone = require 'backbone'
-Stories  = require '../../collections/stories'
+tpl      = require 'raw!../../tpl/stories'
+Base     = require '../base'
 ListView = require './list'
 
 view =
-  initialize: ->
-    # TODO: promiseeeeeeeeeeeee
-    self = @
-    # Get stories from API
-    stories = new Stories
-    stories.fetch()
-    .done ->
-      self.list = new ListView
-        collection: stories
-
-      self.listenTo self.list, 'rendered', self.render
-      self.list.render()
+  initialize: (opt) ->
+    @tpl = @hogan.compile tpl
+    @list = new ListView collection: opt.stories
 
   render: ->
-    @$el.append @list.$el.html()
+    @$el.html @tpl.render()
+    @assign '.stories', @list
     return @
 
-module.exports = Backbone.View.extend view
+module.exports = Base.extend view
