@@ -5,10 +5,6 @@ moment  = require 'moment'
 
 # Load models
 Story   = require '../models/story'
-Chapter = require '../models/chapter'
-Counter = require '../models/counter'
-
-Preload = require '../utils/preload'
 
 # Get all genres of stories
 routes.use (req, res, next) ->
@@ -21,19 +17,6 @@ routes.use (req, res, next) ->
 # Homepage
 ##
 routes.get '*', (req, res, next) ->
-  promises = []
-  # Get top-viewed in the current week
-  promises.push Counter.topViewedStories moment()
-  # Get latest stories
-  promises.push Story.latest()
-
-  Q.all promises
-  .then (results) ->
-    # Preload
-    Preload.add 'topStories', results[0]
-    Preload.add 'latestStories', results[1]
-    res.locals.Preload = Preload.stringify()
-
-    res.render 'index'
+  res.render 'index'
 
 module.exports = routes
