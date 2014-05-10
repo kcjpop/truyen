@@ -1,7 +1,8 @@
 express = require 'express'
-routes = express.Router()
-
-Story = require '../../models/story'
+routes  = express.Router()
+Story   = require '../../models/story'
+Counter = require '../..//models/counter'
+moment  = require 'moment'
 
 ##
 # Define chapters as sub-resource
@@ -29,9 +30,19 @@ routes.param 'slug', (req, res, next, slug) ->
 # Get all stories
 ##
 routes.get '/', (req, res, next) ->
-  Story.all req.query
-  .then (stories) ->
-    res.json stories
+  registry =
+    'latest': Story.latest req.query
+    'hottest': Counter.topViewedStories moment()
+    'all': Story.all req.query
+
+  method = if req.query.filter? then req.query.filter else 'all'
+  unless registry[method]?
+    res.status 400
+    .json message: 'Invalid filter'
+  else
+    registry[method]
+    .then (stories) ->
+      res.json stories
 
 ##
 # Get a single story

@@ -62,7 +62,7 @@ schema.statics.latest = (opt) ->
 
   opt = opt || {}
   @find()
-  .limit 10
+  .limit if opt.limit? then opt.limit else 10
   .sort '-added'
   .exec()
   .then (stories) ->
