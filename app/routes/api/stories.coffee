@@ -29,30 +29,7 @@ routes.param 'slug', (req, res, next, slug) ->
 # Get all stories
 ##
 routes.get '/', (req, res, next) ->
-  # Sort
-  sort = if req.query.sort? then req.query.sort else 'name'
-
-  # Allow to filter but not showing _id and __v
-  fields = if req.query.fields? then req.query.fields else '-_id -__v'
-
-  # Limit and skip
-  limit = if req.query.limit? then req.query.limit else 25
-  skip  = if req.query.skip?  then req.query.skip  else 0
-
-  # Return all stories in database
-  query = Story.find()
-  .select fields
-  .sort sort
-  .limit limit
-  .skip skip
-
-  # @todo: Think about a generic way to allow filters like this
-  if req.query.genre? and req.query.genre.length > 0
-    query.where 'genres'
-    .in [req.query.genre.trim()]
-
-  query
-  .exec()
+  Story.all req.query
   .then (stories) ->
     res.json stories
 

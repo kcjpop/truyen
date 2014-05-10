@@ -41,6 +41,17 @@ schema.statics.genres = (cb) ->
 
     deferred
 
+schema.statics.all = (opt) ->
+  query = @find()
+  .select if opt.fields? then opt.fields else '-__v'
+  .sort if opt.sort? then opt.sort else 'name'
+  .limit if opt.limit? then opt.limit else 25
+  .skip if opt.skip? then opt.skip else 0
+
+  if opt.genre? and opt.genre.length > 0
+    query.where('genres').in [opt.genre]
+
+  return Q query.exec()
 ##
 # Get the list of latest stories
 #
@@ -48,14 +59,12 @@ schema.statics.genres = (cb) ->
 ##
 schema.statics.latest = (opt) ->
   deferred = Q.defer()
-  query = @find()
 
-  # Limit the result to 10
-  if opt?
-    query.limit if opt.limit? then opt.limit else 10
-
-  # Execuse it
-  query.exec()
+  opt = opt || {}
+  @find()
+  .limit 10
+  .sort '-added'
+  .exec()
   .then (stories) ->
     # Find the latest chapter of each story
     promises = []
