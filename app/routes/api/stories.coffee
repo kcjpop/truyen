@@ -4,6 +4,11 @@ routes = express.Router()
 Story = require '../../models/story'
 
 ##
+# Define chapters as sub-resource
+##
+routes.use '/:slug/chapters', require './stories.chapters'
+
+##
 # Get story by slug
 ##
 routes.param 'slug', (req, res, next, slug) ->
@@ -28,7 +33,7 @@ routes.get '/', (req, res, next) ->
   sort = if req.query.sort? then req.query.sort else 'name'
 
   # Allow to filter but not showing _id and __v
-  filters = if req.query.filter? then req.query.filter else '-_id -__v'
+  fields = if req.query.fields? then req.query.fields else '-_id -__v'
 
   # Limit and skip
   limit = if req.query.limit? then req.query.limit else 10
@@ -36,8 +41,8 @@ routes.get '/', (req, res, next) ->
 
   # Return all stories in database
   query = Story.find()
+  .select fields
   .sort sort
-  .select filters
   .limit limit
   .skip skip
 
@@ -56,10 +61,5 @@ routes.get '/', (req, res, next) ->
 ##
 routes.get '/:slug', (req, res, next) ->
   res.json req.story
-
-##
-# Define chapters as sub-resource
-##
-routes.use '/:slug/chapters', require './stories.chapters'
 
 module.exports = routes
