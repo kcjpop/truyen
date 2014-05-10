@@ -36,7 +36,7 @@ routes.get '/', (req, res, next) ->
   fields = if req.query.fields? then req.query.fields else '-_id -__v'
 
   # Limit and skip
-  limit = if req.query.limit? then req.query.limit else 10
+  limit = if req.query.limit? then req.query.limit else 25
   skip  = if req.query.skip?  then req.query.skip  else 0
 
   # Return all stories in database
