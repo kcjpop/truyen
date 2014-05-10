@@ -1,31 +1,29 @@
-Backbone    = require 'backbone'
+Base        = require '../base'
 LatestView  = require './latest'
 HottestView = require './hottest'
 Stories     = require '../../collections/stories'
-Hogan       = require 'hogan'
 tpl         = require 'raw!../../tpl/index'
 
 #
 # Index view will create 2 sub-views: latest and most viewed
 view =
   initialize: ->
-    @tpl = Hogan.compile tpl
+    @tpl = @hogan.compile tpl
 
-    col = new Stories Preload.latestStories
-    @latestView = new LatestView collection: col
 
-    col = new Stories Preload.hottestStories
-    @hottestView = new HottestView collection: col
-    return @
+    col = new Stories
+    col.url = app.apiUrl + '/stories?filter=latest'
+    @latest = new LatestView collection: col
+
+    col = new Stories
+    col.url = app.apiUrl + '/stories?filter=hottest'
+    @hottest = new HottestView collection: col
 
   render: ->
-    self = @
-    # Render main view
     @$el.html @tpl.render()
-    columns = @$el.find('#columns')
 
-    # Render subviews
-    columns.append @latestView.render().$el.html()
-    columns.append @hottestView.render().$el.html()
+    @assign '.hottest', @hottest
+    @assign '.latest', @latest
+    return @
 
-module.exports = Backbone.View.extend view
+module.exports = Base.extend view

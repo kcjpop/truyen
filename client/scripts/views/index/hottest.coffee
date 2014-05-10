@@ -1,11 +1,15 @@
-Backbone = require 'backbone'
-Hogan    = require 'hogan'
-tpl      = require 'raw!../../tpl/index/hottest'
+Base = require '../base'
+tpl  = require 'raw!../../tpl/index/hottest'
 
 view =
+  initialize: ->
+    @tpl = @hogan.compile tpl
+
   render: ->
-    @tpl = Hogan.compile tpl
-    @$el.html @tpl.render topStories: @collection.toJSON()
+    self = @
+    @collection.fetch()
+    .done ->
+      self.$el.html self.tpl.render stories: self.collection.toJSON()
     return @
 
-module.exports = Backbone.View.extend view
+module.exports = Base.extend view

@@ -2,48 +2,44 @@
 {{ Config.app.title }}
 {{/yield-title}}
 
-{{#yield-js}}
-<script>
-var Preload = Preload || {};
-Preload = {{& Preload}};
-</script>
-{{/yield-js}}
+<div class="row">
+  <div class="column">
+    <div class="ui icon message">
+      <div class="header">Xin chào xin chào!</div>
+      <p>
+        Nói không phải quá chứ AZTruyen của chúng tôi có đủ các thể loại truyện từ trên xuống dưới từ trái sang phải.
+      </p>
+      <p>Không tin à?! Click ngay vào Truyện ở trên menu để xem danh sách</p>
+      <p>Đừng quên click đăng ký để có thể blah blah blah</p>
+      <i class="heart icon"></i>
+    </div>
+  </div>
+</div>
 
-  <div class="row">
-    <div class="column">
-      <div class="ui icon message">
-        <div class="header">Xin chào xin chào!</div>
-        <p>
-          Nói không phải quá chứ AZTruyen của chúng tôi có đủ các thể loại truyện từ trên xuống dưới từ trái sang phải.
-        </p>
-        <p>Không tin à?! Click ngay vào Truyện ở trên menu để xem danh sách</p>
-        <p>Đừng quên click đăng ký để có thể blah blah blah</p>
-        <i class="heart icon"></i>
+<div class="row">
+  <div class="column">
+    <div class="ui two column doubling grid">
+      <div class="column latest"></div>
+      <div class="column hottest"></div>
+    </div>
+  </div>
+</div>
+
+{{# Config.app.mobileApps}}
+<div class="row">
+  <div class="column">
+    <div class="ui three column grid">
+      <h3 class="ui red header">azTruyen cũng có hàng trên mobile</h3>
+      <div class="center aligned column">
+        <a href="{{ Config.app.mobileApps.android }}" target="_blank"><i class="huge android icon"></i></a>
+      </div>
+      <div class="center aligned column popup" data-content="Đùa đấy, chưa có tiền mua Mac :(">
+        <a href="#"><i class="huge apple icon"></i></a>
+      </div>
+      <div class="center aligned column popup" data-content="Còn cái này chưa học">
+        <a href="#"><i class="huge windows icon"></i></a>
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="column">
-      <div class="ui two column doubling grid" id="columns"></div>
-    </div>
-  </div>
-
-  {{# Config.app.mobileApps}}
-  <div class="row">
-    <div class="column">
-      <div class="ui three column grid">
-        <h3 class="ui red header">azTruyen cũng có hàng trên mobile</h3>
-        <div class="center aligned column">
-          <a href="{{ Config.app.mobileApps.android }}" target="_blank"><i class="huge android icon"></i></a>
-        </div>
-        <div class="center aligned column popup" data-content="Đùa đấy, chưa có tiền mua Mac :(">
-          <a href="#"><i class="huge apple icon"></i></a>
-        </div>
-        <div class="center aligned column popup" data-content="Còn cái này chưa học">
-          <a href="#"><i class="huge windows icon"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{/ Config.app.mobileApps}}
+</div>
+{{/ Config.app.mobileApps}}

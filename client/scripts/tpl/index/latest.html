@@ -1,16 +1,14 @@
-<div class="column">
-  <h3 class="ui red header">Mới cập nhật</h3>
+<h3 class="ui red header">Mới cập nhật</h3>
 
-  <div class="ui segment" id="latest">
-    {{# latestStories}}
-    <div class="ui two column grid">
-      <div class="column">
-        <a class="story" data-target="{{ url }}" href="{{ url }}" title="Click để xem truyện này">{{name}}</a>
-      </div>
-      <div class="right aligned column">
-        <div class="ui green label"><a href="{{url}}{{latestChapter.url }}" title="Click để đọc chương này">Chương<div class="detail">{{latestChapter.number}}</div></a></div>
-      </div>
+<div class="ui segment" id="latest">
+  {{# stories}}
+  <div class="ui two column grid">
+    <div class="column">
+      <a class="story" data-target="{{ url }}" href="{{ url }}" title="Click để xem truyện này">{{name}}</a>
     </div>
-    {{/ latestStories}}
+    <div class="right aligned column">
+      <div class="ui green label"><a href="{{url}}{{latestChapter.url }}" title="Click để đọc chương này">Chương<div class="detail">{{latestChapter.number}}</div></a></div>
+    </div>
   </div>
+  {{/ stories}}
 </div>
